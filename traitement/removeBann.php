@@ -12,7 +12,7 @@
 
             $nbReq = $reqRem->rowCount();
             echo $nbReq;
-            header("Location:index.php?action=profil&id='$idUtilisateur1'");
+            header("Location:index.php?action=profil&id=".$idUtilisateur1);
         }
         else{
             header("Location:index.php?action=home");

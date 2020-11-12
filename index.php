@@ -2,7 +2,6 @@
 
 include("config/config.php");
 include("config/bd.php");
-include("divers/balises.php");
 include("config/actions.php");
 session_start();
 ob_start();
@@ -40,19 +39,18 @@ ob_start();
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="index.php?action=home">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php?action=home">Home</a>
       </li>
       <?php
         if(isset($_SESSION['id'])){
           ?>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?action=deconnexion">Deconnexion</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?action=profil&id=<?=$_SESSION['id']?>">Profil</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php?action=profil&id=<?=$_SESSION['id']?>">Profil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php?action=deconnexion">Deconnexion</a>
+            </li>
           <?php
         }
         else{

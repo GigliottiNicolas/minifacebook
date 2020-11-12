@@ -35,7 +35,7 @@
                     
                     if($nbReq>0){
                         ?>
-                            <p>Vous avez <?=$nbReq?> demande(s) d'amitié en cours</p>
+                            <p>Vous avez <b><?=$nbReq?></b> demande(s) d'amitié en cours</p>
                         <?php
                             if($nbReq==1){
                                 ?>
