@@ -22,16 +22,27 @@
 
                     if($mailexist == 0){
 
-                        //verifier que les deux mots de passe correspondent
-                        if($mdp == $mdpVerif){
+                        //l'email n'existe pas pour une autre compte
+                        $reqpseudo = $bdd->prepare("SELECT * FROM user WHERE pseudo = ?");
+                        $reqpseudo->execute(array($pseudo));
+                        $pseudoexist = $reqpseudo->rowCount(); //si une ligne est renvoyé, le pseudo existe déjà dans la bdd
 
-                            //toutes les conditions sont ok => inscription/insertion des données dans le bdd
-                            $insertUser = $bdd->prepare("INSERT INTO user(pseudo, mdp, email) VALUES(?, ?, ?)");
-                            $insertUser->execute(array($pseudo, $email, $mdp));
-                            $message = "Votre compte a bien été créé ! <a href=\"index.php?action=connexion\">Me connecter</a>";
+                        if($pseudoexist == 0 ){
+
+                            //verifier que les deux mots de passe correspondent
+                            if($mdp == $mdpVerif){
+
+                                //toutes les conditions sont ok => inscription/insertion des données dans le bdd
+                                $insertUser = $bdd->prepare("INSERT INTO user(pseudo, email, mdp) VALUES(?, ?, ?)");
+                                $insertUser->execute(array($pseudo, $email, $mdp));
+                                $message = "Votre compte a bien été créé ! <a href=\"index.php?action=connexion\">Me connecter</a>";
+                            }
+                            else{
+                                $message="les mots de passe ne correspondent pas";
+                            }
                         }
                         else{
-                            $message="les mots de passe ne correspondent pas";
+                            $message='ce pseudo existe déjà';
                         }
                     }
                     else{

@@ -14,11 +14,6 @@
     <button type="submit" name="valider" id="valider" class="btn btn-primary">Se connecter</button>
 </form>
 
-
-
-
-
-
 <!--
 
     pour enregistrer les informations de connexion de l'user

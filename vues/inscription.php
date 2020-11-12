@@ -1,5 +1,7 @@
 <h2>inscription</h2>
 
+<a href="index.php?action=connexion">connexion</a>
+
 <form method="post" action="index.php?action=login">
 
     <div class="form-group">

@@ -1,0 +1,11 @@
+
+
+
+/* home */
+.home{
+    display: flex;
+}
+
+    .home .feed{
+        width: 80%;
+    }

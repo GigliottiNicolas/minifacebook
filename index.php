@@ -43,8 +43,25 @@ ob_start();
       <li class="nav-item active">
         <a class="nav-link" href="index.php?action=home">Home <span class="sr-only">(current)</span></a>
       </li>
+      <?php
+        if(isset($_SESSION['id'])){
+          ?>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?action=deconnexion">Deconnexion</a>
+          </li>
+          <?php
+        }
+        else{
+          ?>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?action=inscription">Inscription</a>
+          </li>
+          <?php
+        }
+      ?>
+        
       <li class="nav-item">
-        <a class="nav-link" href="index.php?action=inscription">Inscription</a>
+        <a class="nav-link" href="index.php?action=profil&id=<?=$_SESSION['id']?>">Profil</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -64,7 +81,7 @@ ob_start();
                 if (isset($_GET["action"])) {
                     $action = $_GET["action"];
                 } else {
-                    $action = "accueil";
+                    $action = "home";
                 }
 
                 // Est ce que cette action existe dans la liste des actions
@@ -81,8 +98,6 @@ ob_start();
             </div>
         </div>
     </div>
-
-
 
 
 
