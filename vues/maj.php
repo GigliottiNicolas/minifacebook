@@ -11,7 +11,7 @@
         if($_GET['item'] == 'mdp'){
             ?>
                 <h3>Changement de votre mot de passe</h3>
-                <form method="GET" action="index.php?action=upgrate&item=mdp">
+                <form method="GET" action="index.php?action=update&item=mdp">
                     <label for="oldMdp">Ancien mot de passe</label>
                     <input type="password" class="form-control" name="oldMdp" id="oldMdp">
 

@@ -14,7 +14,9 @@
                 $insertPost = $bdd->prepare("INSERT INTO ecrit(titre, contenu, dateEcrit, image, idAuteur, idAmi) VALUES(?, ?, ?, ?, ?, ?)");
                 $insertPost->execute(array($titre, $contenu, $dateEcrit, $image, $idAuteur, $idAmi));
 
-                header("Location:index.php?action=profil&id=$idAmi");
+                echo "ok";
+
+                header("Location:index.php?action=profil&id=".$idAmi);
             }
 
             

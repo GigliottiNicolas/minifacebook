@@ -78,17 +78,23 @@
             <?php
                 $idUtilisateur1 = $_SESSION['id'];
                 $idUtilisateur2 = $idUser;
+
+
+                //si le couple existe ? 
                 
                 $linkReq = $bdd->prepare("SELECT * FROM lien WHERE idUtilisateur1 = ? AND idUtilisateur2 = ?");
                 $linkReq->execute(array($idUtilisateur1, $idUtilisateur2));
 
-                //si le couple existe dans l'autre sens
+                $linkExist=$linkReq->rowCount();
+
+
+                //si le couple existe dans l'autre sens ?
                 $linkReq2 = $bdd->prepare("SELECT * FROM lien WHERE idUtilisateur1 = ? AND idUtilisateur2 = ?");
                 $linkReq2->execute(array($idUtilisateur2, $idUtilisateur1));
 
                 $linkExist2=$linkReq2->rowCount();
 
-                $linkExist=$linkReq->rowCount();
+                
                 
                 if($linkExist == 1){
                     //savoir quel lien ? 
@@ -97,7 +103,8 @@
                     if($linkInfo['etat'] == "attente"){
                         // demande en attente
                         ?>
-                            <a href="index.php?action=friendReqCanceled">Demande d'ami en cours</a>
+                            <p>Demande d'ami en cours</p>
+                            <a href="index.php?action=friendReqCanceled&idUtilisateur2=<?=$idUser?>">Annuler la demande</a>
                         <?php
                     }
                     if($linkInfo['etat'] == "ami"){
@@ -105,19 +112,56 @@
 
                         ?>
 
-                                Nouveau post sur le mur de <?=$pseudoUser?>
+                            <h4>Nouveau post sur le mur de <?=$pseudoUser?></h4>
 
-                                <form method="post" action="index.php?action=addPost&idAmi=<?=$idUser?>">
-                                        <div class="form-group">
-                                            <label for="titre">titre du post</label>
-                                            <input type="text" class="form-control" name="titre" id="titre">
+                            <form method="post" action="index.php?action=addPost&idAmi=<?=$idUser?>">
+                                    <div class="form-group">
+                                        <label for="titre">titre du post</label>
+                                        <input type="text" class="form-control" name="titre" id="titre">
 
-                                            <label for="contenu">contenu du post</label>
-                                            <input type="text" class="form-control" name="contenu" id="contenu">
+                                        <label for="contenu">contenu du post</label>
+                                        <input type="text" class="form-control" name="contenu" id="contenu">
 
-                                        </div>
-                                        <button type="submit" name="valider" id="valider" class="btn btn-primary">Poster</button>
-                                </form>
+                                    </div>
+                                    <button type="submit" name="valider" id="valider" class="btn btn-primary">Poster</button>
+                            </form>
+
+                            <h4> Mur de <?=$pseudoUser?></h4>
+
+                            <?php
+                                $reqPost=$bdd->prepare("SELECT * FROM ecrit JOIN user ON idAuteur = user.id WHERE idAmi = ?");
+                                $reqPost->execute(array($idUser));
+
+                                $nbPost = $reqPost->rowCount();
+                                if($nbPost>0){
+                                    
+                                    while($p = $reqPost->fetch()){
+                                        if($p['idAuteur'] == $_SESSION['id']){
+                                            ?>
+                                                <div class="post">
+                                                    <h5><?=$p['titre']?> - <small>poster par  moi le <?=$p['dateEcrit']?></small></h5> 
+                                                    <p><?=$p['contenu']?></p>
+                                                </div>
+                                            <?php
+                                        }
+                                        else{
+                                            ?>
+                                                <div class="post">
+                                                    <h5><?=$p['titre']?> - <small>poster par  <a href="index.php?action=profil&id=<?=$p['idAuteur']?>"><?=$p['pseudo']?></a> le <?=$p['dateEcrit']?></small></h5> 
+                                                    <p><?=$p['contenu']?></p>
+                                                </div>
+                                            <?php
+                                        }
+                                    }
+                                }
+                                else{
+                                    ?>
+                                        <p>aucun post sur le mur, soyez le premier!</p>
+                                    <?php
+                                }
+
+                                
+                            ?> 
 
                         <?php
 
@@ -147,7 +191,7 @@
 
                         ?>
 
-                                Nouveau post sur le mur de <?=$pseudoUser?>
+                                <h4>Nouveau post sur le mur de <?=$pseudoUser?></h4>
 
                                 <form method="post" action="index.php?action=addPost&idAmi=<?=$idUser?>">
                                         <div class="form-group">
@@ -160,6 +204,43 @@
                                         </div>
                                         <button type="submit" name="valider" id="valider" class="btn btn-primary">Poster</button>
                                 </form>
+
+                               <h4> Mur de <?=$pseudoUser?></h4>
+
+                               <?php
+                                    $reqPost=$bdd->prepare("SELECT * FROM ecrit JOIN user ON idAuteur = user.id WHERE idAmi = ?");
+                                    $reqPost->execute(array($idUser));
+
+                                    $nbPost = $reqPost->rowCount();
+                                    if($nbPost>0){
+                                        
+                                        while($p = $reqPost->fetch()){
+                                            if($p['idAuteur'] == $_SESSION['id']){
+                                                ?>
+                                                    <div class="post">
+                                                        <h5><?=$p['titre']?> - <small>poster par  moi le <?=$p['dateEcrit']?></small></h5> 
+                                                        <p><?=$p['contenu']?></p>
+                                                    </div>
+                                                <?php
+                                            }
+                                            else{
+                                                ?>
+                                                    <div class="post">
+                                                        <h5><?=$p['titre']?> - <small>poster par  <?=$p['pseudo']?> le <?=$p['dateEcrit']?></small></h5> 
+                                                        <p><?=$p['contenu']?></p>
+                                                    </div>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        ?>
+                                            <p>aucun post sur le mur, soyez le premier!</p>
+                                        <?php
+                                    }
+
+                                    
+                               ?>
 
                         <?php
 
