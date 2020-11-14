@@ -8,6 +8,40 @@
             <!-- mur -->
             <div class="feed">
                 <h2>Home</h2>
+                <?php
+                    $idAuteur = $_SESSION['id'];
+
+                    $reqPost=$bdd->prepare("SELECT * FROM ecrit JOIN user ON idAmi = user.id WHERE idAuteur = ?");
+                    $reqPost->execute(array($idAuteur));
+
+                    $nbPost = $reqPost->rowCount();
+                    if($nbPost>0){
+                        
+                        while($p = $reqPost->fetch()){
+                            if($p['idAuteur'] == $_SESSION['id']){
+                                ?>
+                                    <div class="post">
+                                        <h5><?=$p['titre']?> - <small>poster par  moi le <?=$p['dateEcrit']?></small></h5> 
+                                        <p><?=$p['contenu']?></p>
+                                    </div>
+                                <?php
+                            }
+                            else{
+                                ?>
+                                    <div class="post">
+                                        <h5><?=$p['titre']?> - <small>poster par  <?=$p['pseudo']?> le <?=$p['dateEcrit']?></small></h5> 
+                                        <p><?=$p['contenu']?></p>
+                                    </div>
+                                <?php
+                            }
+                        }
+                    }
+                    else{
+                        ?>
+                            <p>aucun post sur le mur, soyez le premier!</p>
+                        <?php
+                    }
+                ?>
                 
             </div>
 

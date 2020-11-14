@@ -56,7 +56,13 @@
         <?php
     }
 
+
+
+
+
     //cas 3 : c'est le profil d'un autre user
+
+    //on cherche alors à savoir si un lien existe entre l'user co et le profil où on se trouve
     else{
 
         $reqInfo = $bdd->prepare("SELECT * FROM user WHERE id = ?");
@@ -129,7 +135,7 @@
                             <h4> Mur de <?=$pseudoUser?></h4>
 
                             <?php
-                                $reqPost=$bdd->prepare("SELECT * FROM ecrit JOIN user ON idAuteur = user.id WHERE idAmi = ?");
+                                $reqPost=$bdd->prepare("SELECT * FROM ecrit JOIN user ON idAuteur = user.id WHERE idAmi = ? ORDER BY dateEcrit DESC");
                                 $reqPost->execute(array($idUser));
 
                                 $nbPost = $reqPost->rowCount();

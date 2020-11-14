@@ -22,6 +22,7 @@ $listeDesActions = array(
 "acceptFriend" => "traitement/acceptFriend.php",
 "bannFriend" => "traitement/bannFriend.php",
 "removeBann" => "traitement/removeBann.php",
+"search" => "traitement/search.php",
 
 
 

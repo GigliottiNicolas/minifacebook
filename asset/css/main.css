@@ -1,5 +1,9 @@
 
 
+/* nav */
+nav form .btn{
+    border:none !important;
+}
 
 /* home */
 .home{
@@ -11,9 +15,12 @@
     }
 
 
-
+/* post */
 .post{
     border: 1px solid black;
     width: 30%;
     padding:30px;
 }
+
+
+
