@@ -90,8 +90,7 @@
         <?php
     }
     else{
-        //header("Location: index.php?action=connexion");
-        echo "pas co";
+        header("Location: index.php?action=connexion");
     }
 
     ?>

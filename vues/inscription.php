@@ -1,6 +1,14 @@
 <h2>inscription</h2>
 
-<a href="index.php?action=connexion">connexion</a>
+<p>déjà un compte?<a href="index.php?action=connexion">connexion</a></p>
+
+<?php
+
+    if(isset($_GET['message'])){
+        echo "<p class=rouge>".$_GET['message']."</p>";
+    }
+
+?>
 
 <form method="post" action="index.php?action=login">
 

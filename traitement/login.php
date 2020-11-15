@@ -39,32 +39,32 @@
                             }
                             else{
                                 $message="les mots de passe ne correspondent pas";
+                                header("Location:index.php?action=inscription&message=".$message);
                             }
                         }
                         else{
                             $message='ce pseudo existe déjà';
+                            header("Location:index.php?action=inscription&message=".$message);
                         }
                     }
                     else{
                         $message="cet email existe déjà!";
+                        header("Location:index.php?action=inscription&message=".$message);
                     }
                 }
                 else{
                     $message="l'email n'est pas valide";
+                    header("Location:index.php?action=inscription&message=".$message);
                 }
             }
             else{
                 $message="le pseudo est trop long";
+                header("Location:index.php?action=inscription&message=".$message);
             }
         }
         else{
             $message = "veuilllez remplir tous les champs";
+            header("Location:index.php?action=inscription&message=".$message);
         }
-
-   
-
-    if(isset($message)){
-        echo $message;
-    }
 
 ?>

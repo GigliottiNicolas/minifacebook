@@ -21,7 +21,7 @@
             <a href="index.php?action=maj&item=pseudo">changer le pseudo</a></br></br>
             <p>email : <?=$emailUser?></p>
             <a href="index.php?action=maj&item=email">changer l'email</a></br></br>
-            <p>mot de passe : <?=$mdpUser?></p>
+            <p>mot de passe : *********</p>
             <a href="index.php?action=maj&item=mdp">changer le mot de passe</a></br></br>
 
             
@@ -39,7 +39,7 @@
                 else{
                     ?>
                         <p>Mes demandes en cours</p> 
-                        <ul>
+                <ul>
                     <?php
                 }
                 while($r=$req->fetch()){
@@ -51,7 +51,7 @@
                     <?php
                 }
             ?>
-            </ul>   
+                </ul>   
 
         <?php
     }

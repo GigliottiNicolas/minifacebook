@@ -1,4 +1,9 @@
 <h2>Connexion</h2>
+<?php
+    if(isset($_GET['message'])){
+        echo "<p class=rouge>".$_GET['message']."</p>";
+    }
+?>
 
 <form method="post" action="index.php?action=connecter">
     <div class="form-group">
