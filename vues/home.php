@@ -11,7 +11,7 @@
                 <?php
                     $idAuteur = $_SESSION['id'];
 
-                    $reqPost=$bdd->prepare("SELECT * FROM ecrit JOIN user ON idAmi = user.id WHERE idAuteur = ?");
+                    $reqPost=$bdd->prepare("SELECT *, ecrit.id AS idEcrit FROM ecrit JOIN user ON idAmi = user.id WHERE idAuteur = ?");
                     $reqPost->execute(array($idAuteur));
 
                     $nbPost = $reqPost->rowCount();
@@ -23,6 +23,26 @@
                                     <div class="post">
                                         <h5><?=$p['titre']?> - <small>poster par  moi le <?=$p['dateEcrit']?></small></h5> 
                                         <p><?=$p['contenu']?></p>
+                                        <?php
+                                            $idUtilisateur=$_SESSION['id'];
+                                            $reqLike = $bdd->prepare("SELECT * FROM aime WHERE idEcrit=? AND idUtilisateur=?");
+                                            $reqLike->execute(array($p['idEcrit'], $idUtilisateur));
+                        
+                                            $nbRes=$reqLike->rowCount();
+                                        
+
+                                            if($nbRes==1){
+                                                ?>
+                                                    <a href="index.php?action=dislike&id=<?=$p['idEcrit']?>">ne plus aimer</a>
+                                                <?php
+                                            }
+                                            else{
+                                                ?>
+                                                    <a href="index.php?action=like&id=<?=$p['idEcrit']?>">aimer</a>
+                                                <?php
+                                            }
+                                        
+                                        ?>        
                                     </div>
                                 <?php
                             }
@@ -31,6 +51,26 @@
                                     <div class="post">
                                         <h5><?=$p['titre']?> - <small>poster par  <?=$p['pseudo']?> le <?=$p['dateEcrit']?></small></h5> 
                                         <p><?=$p['contenu']?></p>
+                                        <?php
+                                            $idUtilisateur=$_SESSION['id'];
+                                            $reqLike = $bdd->prepare("SELECT * FROM aime WHERE idEcrit=? AND idUtilisateur=?");
+                                            $reqLike->execute(array($p['idEcrit'], $idUtilisateur));
+                        
+                                            $nbRes=$reqLike->rowCount();
+                                        
+
+                                            if($nbRes==1){
+                                                ?>
+                                                    <a href="index.php?action=dislike&id=<?=$p['idEcrit']?>">ne plus aimer</a>
+                                                <?php
+                                            }
+                                            else{
+                                                ?>
+                                                    <a href="index.php?action=like&id=<?=$p['idEcrit']?>">aimer</a>
+                                                <?php
+                                            }
+                                        
+                                        ?>
                                     </div>
                                 <?php
                             }
@@ -81,6 +121,11 @@
                                     <a href="index.php?action=profil&id=<?=$_SESSION['id']?>">Voir les demandes</a>
                                 <?php
                             }
+                    }
+                    else{
+                        ?>
+                            <p>pas de demande d'ami pour aujourd'hui :(</p>
+                        <?php
                     }
                 ?>
                 
