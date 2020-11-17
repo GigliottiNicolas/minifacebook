@@ -4,7 +4,7 @@
 $listeDesActions = array(
     //vues
 "" => "vues/home.php",
-"inscription" => "vues/inscription.php",
+"inscription" => "vues/connexion.php",
 "connexion" => "vues/connexion.php",
 "home" => "vues/home.php",
 "profil" => "vues/profil.php",
@@ -15,7 +15,7 @@ $listeDesActions = array(
 "login" => "traitement/login.php",
 "connecter" => "traitement/connecter.php",
 "deconnexion" => "traitement/deconnexion.php",
-"update" => "traitement/update.php", // a faire
+"update" => "traitement/update.php",
 "addPost" => "traitement/addPost.php",
 "friendReq" => "traitement/friendReq.php",
 "friendReqCanceled" => "traitement/friendReqCanceled.php",

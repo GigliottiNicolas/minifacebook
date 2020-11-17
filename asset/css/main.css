@@ -1,14 +1,56 @@
-/* css generique */
+.container-fluid{
+    background-color: #23386B;
+    min-height: 100vh;
+    padding-top: 10vh;
+}
+
+/* CSS GENERIQUE */
+/* test */
 .rouge{
     color:red;
 }
+.bgRouge{
+    color:red;
+}
 
-/* nav */
+/* marge */
+.marge{
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+/* couleur */
+.bgBleuClair{
+    background-color: #23386B;
+}
+.BleuClair{
+    background-color: #23386B;
+}
+.bgBleuFonce{
+    background-color: #1B2C56;
+}
+.BleuFonce{
+    background-color: #1B2C56;
+}
+.white{
+    color:white;
+}
+
+
+
+
+
+/* NAV */
+nav{
+    position: fixed !important;
+    width: 100%;
+    z-index: 1;
+}
 nav form .btn{
     border:none !important;
 }
 
-/* home */
+/* HOME */
 .home{
     display: flex;
 }
@@ -18,11 +60,42 @@ nav form .btn{
     }
 
 
+.friendsCo{
+    position: fixed;
+    right: 100px;
+    padding:20px 30px 20px 30px;
+    border-radius:30px;
+    height: 85vh;
+}
+
+
+/* LOGIN */
+.login{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    height: 90vh;
+    padding-top: 120px;
+}
+    .inscription, .connexion{
+        height: 70vh;
+        min-width: 40%;
+        padding: 20px 30px 20px 30px;
+        border-radius: 30px;
+    }
+
+
+
+/* MODULE */
 /* post */
 .post{
-    border: 1px solid black;
-    width: 30%;
+    border-radius:30px;
+    padding:20px 30px 20px 30px;
+    width: 80%;
     padding:30px;
+    color: #1B2C56;
+    background-color: white;
+    margin-bottom: 20px;
 }
 
 

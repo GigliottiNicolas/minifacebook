@@ -1,4 +1,4 @@
-<div class="home">
+<div class="home marge white">
 
     <?php
 
@@ -7,7 +7,7 @@
 
             <!-- mur -->
             <div class="feed">
-                <h2>Home</h2>
+                <h2>Mon feed</h2>
                 <?php
                     $idAuteur = $_SESSION['id'];
 
@@ -85,7 +85,7 @@
                 
             </div>
 
-            <div class="friendsCo">
+            <div class="friendsCo bgBleuFonce">
                 <h4>mes amis connectés </h4>
                 <?php
                     $idUtilisateur2 = $_SESSION['id'];
