@@ -17,12 +17,30 @@
         ?>
 
             <h2>Mon profil</h2>
-            <p>pseudo : <?=$pseudoUser?></p>
-            <a href="index.php?action=maj&item=pseudo">changer le pseudo</a></br></br>
-            <p>email : <?=$emailUser?></p>
-            <a href="index.php?action=maj&item=email">changer l'email</a></br></br>
-            <p>mot de passe : *********</p>
-            <a href="index.php?action=maj&item=mdp">changer le mot de passe</a></br></br>
+            <div>
+                <p>pseudo : <?=$pseudoUser?></p>
+                <!-- Button changer de pseudo-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePseudo">
+                    Changer le pseudo
+                    </button>
+            </div>
+
+
+            <div>
+                <p>email : <?=$emailUser?></p>
+                <!-- Button changer d'email-->
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeEmail">
+                    Changer l'email
+                    </button>
+            </div>
+
+            <div>
+                <p>mot de passe : *********</p>
+                <!-- Button changer d'email-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeMdp">
+                    Changer le mot de passe
+                    </button>
+            </div>
 
             
             
@@ -276,3 +294,105 @@
 ?>
 
 
+<!-- MODAL de changements : -->
+
+
+<!-- Modal changer de pseudo-->
+<div class="modal fade" id="changePseudo" tabindex="-1" role="dialog" aria-labelledby="changePseudoLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changePseudoLabel">Changement de votre pseudo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                <?php
+                    if(isset($_GET['message'])){
+                        echo "<p class='rouge'>".$_GET['message']."</p>";
+                    }
+                ?>
+                <form method="POST" action="index.php?action=update&item=pseudo">
+                    <input type="text" class="form-control" name="newPseudo" id="newPseudo" placeholder="nouveau pseudo">
+
+                    
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="valider" id="valider" class="btn btn-primary">Changer le pseudo</button>
+                </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal changer d'email-->
+<div class="modal fade" id="changeEmail" tabindex="-1" role="dialog" aria-labelledby="changeEmailLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changeEmailLabel">Changement de votre email</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                <?php
+                    if(isset($_GET['message'])){
+                        echo "<p class='rouge'>".$_GET['message']."</p>";
+                    }
+                ?>
+                <form method="POST" action="index.php?action=update&item=email">
+                    <label for="newEmail">mettre à jour votre email</label>
+                    <input type="email" class="form-control" name="newEmail" id="newEemail">          
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="valider" id="valider" class="btn btn-primary">Mettre à jour</button>
+                </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal changer de mot de passe-->
+<div class="modal fade" id="changeMdp" tabindex="-1" role="dialog" aria-labelledby="changeMdpLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changeMdpLabel">Changement de votre mot de passe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                <?php
+                    if(isset($_GET['message'])){
+                        echo "<p class='rouge'>".$_GET['message']."</p>";
+                    }
+                ?>
+                <form method="POST" action="index.php?action=update&item=mdp">
+                    <label for="oldMdp">Ancien mot de passe</label>
+                    <input type="password" class="form-control" name="oldMdp" id="oldMdp">
+
+                    <label for="newMdp">Nouveaux mot de passe</label>
+                    <input type="password" class="form-control" name="newMdp" id="newMdp">
+
+                    <label for="newMdpVerif">Confirmation du mot de passe</label>
+                    <input type="password" class="form-control" name="newMdpVerif" id="newMdpVerif">
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="valider" id="valider" class="btn btn-primary">Changer le mot de passe</button>
+                </form>
+      </div>
+    </div>
+  </div>
+</div>
