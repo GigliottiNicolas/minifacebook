@@ -7,7 +7,6 @@
 
             <!-- mur -->
             <div class="feed">
-                <h2>Mon feed</h2>
                 <?php
                     $idAuteur = $_SESSION['id'];
 
