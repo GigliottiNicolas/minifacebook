@@ -1,5 +1,15 @@
+/* font */
+@font-face {
+    font-family: 'miraculous';
+        src: url('../fonts/Miraculous&Christmas.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+/* conteneur  */
 .container-fluid{
     background-color: #23386B;
+    color:white;
     min-height: 100vh;
     padding-top: 10vh;
 }
@@ -43,11 +53,26 @@
 /* NAV */
 nav{
     position: fixed !important;
+    background-color: #1B2C56;
     width: 100%;
     z-index: 1;
 }
 nav form .btn{
     border:none !important;
+}
+
+.navbar-brand{
+    font-family: "miraculous";
+    font-size: 1.7em !important;
+    color:red !important;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color:rgba(255, 255, 255, 0.7) !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+    color:white !important;
 }
 
 /* HOME */
