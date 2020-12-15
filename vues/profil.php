@@ -1,6 +1,12 @@
+<div class="profil marge">
 <?php
 
-    //trois cas possible 
+    //trois cas possible :
+        // => pas co, on retourne à la page login
+        // => connecté et sur notre compte, on affiche les données de l'utilisateurs
+        // => conecté et sur le compte de qlq d'autre
+                    // on regarde s'ils ont un lien 
+                            //amis : 
 
     //cas 1 : On n est pas connecté, il faut retourner à la page de login
     if(!isset($_SESSION["id"])) {
@@ -195,6 +201,7 @@
                         echo "vous ne pouvez pas demander ... en ami";
                     }
                 }
+                //dans l'autre sens
                 elseif($linkExist2 == 1){
                     //savoir quel lien ? 
                     $linkInfo=$linkReq2->fetch();
@@ -395,4 +402,6 @@
       </div>
     </div>
   </div>
+</div>
+
 </div>

@@ -29,18 +29,32 @@
     padding-left: 100px;
 }
 
+/* bouton */
+.btn-primary {
+    color: #fff;
+    background-color: #1B2C56 !important;
+    border-color: #23386B !important;
+    border-radius: 30px !important;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #23386B !important;
+    border-color: #1B2C56 !important;
+}
+
 /* couleur */
 .bgBleuClair{
     background-color: #23386B;
 }
 .BleuClair{
-    background-color: #23386B;
+    color: #23386B;
 }
 .bgBleuFonce{
     background-color: #1B2C56;
 }
 .BleuFonce{
-    background-color: #1B2C56;
+    color: #1B2C56;
 }
 .white{
     color:white;
@@ -108,6 +122,8 @@ nav form .btn{
         padding: 20px 30px 20px 30px;
         border-radius: 30px;
     }
+
+/* PROFIL */
 
 
 
