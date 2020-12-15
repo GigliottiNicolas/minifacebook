@@ -7,10 +7,22 @@
 
             <!-- mur -->
             <div class="feed">
+                                <!-- ecriture d'un nouveau post sur la page home, écrit sur mon profil -->
+                                <form method="post" action="index.php?action=addPost&idAmi=<?=$_SESSION['id'];?>">
+                                        <div class="form-group">
+                                            <label for="titre">titre du post</label>
+                                            <input type="text" class="form-control" name="titre" id="titre">
+
+                                            <label for="contenu">contenu du post</label>
+                                            <input type="text" class="form-control" name="contenu" id="contenu">
+
+                                        </div>
+                                        <button type="submit" name="valider" id="valider" class="btn btn-primary">Poster</button>
+                                </form>
                 <?php
                     $idAuteur = $_SESSION['id'];
 
-                    $reqPost=$bdd->prepare("SELECT *, ecrit.id AS idEcrit FROM ecrit JOIN user ON idAmi = user.id WHERE idAuteur = ?");
+                    $reqPost=$bdd->prepare("SELECT *, ecrit.id AS idEcrit FROM ecrit JOIN user ON idAmi = user.id WHERE idAuteur = ? ORDER BY dateEcrit");
                     $reqPost->execute(array($idAuteur));
 
                     $nbPost = $reqPost->rowCount();
@@ -28,7 +40,9 @@
                                             $reqLike->execute(array($p['idEcrit'], $idUtilisateur));
                         
                                             $nbRes=$reqLike->rowCount();
-                                        
+                                            ?>
+                                                <p><?=$nbRes?> like(s)</p>
+                                            <?php
 
                                             if($nbRes==1){
                                                 ?>
@@ -57,10 +71,13 @@
                         
                                             $nbRes=$reqLike->rowCount();
                                         
+                                                ?>
+                                                    <p><?=$nbRes?> like(s)</p>
+                                                <?php
 
                                             if($nbRes==1){
                                                 ?>
-                                                    <a href="index.php?action=dislike&id=<?=$p['idEcrit']?>">ne plus aimer</a>
+                                                    <a href="index.php?action=dislike&id=<?=$p['idEcrit']?>">ne plus aimer !</a>
                                                 <?php
                                             }
                                             else{
@@ -85,7 +102,7 @@
             </div>
 
             <div class="friendsCo bgBleuFonce">
-                <h4>mes amis connectés </h4>
+                <h4>mes lutins connectés </h4>
                 <?php
                     $idUtilisateur2 = $_SESSION['id'];
                     $reqFriends = $bdd->prepare("SELECT * FROM lien JOIN user ON lien.idUtilisateur1=user.id WHERE idUtilisateur2=? AND etat = 'ami'");
@@ -100,7 +117,7 @@
                     echo "</ul>";
                 ?>
 
-                <h4>mes demandes d'amis en attente</h4>
+                <h4>mes demandes de lutins en attente</h4>
                 <?php
                     $req = $bdd->prepare("SELECT * FROM lien JOIN user ON lien.idUtilisateur1=user.id WHERE idUtilisateur2 = ? AND etat = 'attente'");
                     $req->execute(array($_SESSION['id']));
@@ -108,7 +125,7 @@
                     
                     if($nbReq>0){
                         ?>
-                            <p>Vous avez <b><?=$nbReq?></b> demande(s) d'amitié en cours</p>
+                            <p>Vous avez <b><?=$nbReq?></b> demande(s) de lutins en cours</p>
                         <?php
                             if($nbReq==1){
                                 ?>
@@ -123,7 +140,7 @@
                     }
                     else{
                         ?>
-                            <p>pas de demande d'ami pour aujourd'hui :(</p>
+                            <p>pas de demande de lutin pour aujourd'hui :(</p>
                         <?php
                     }
                 ?>

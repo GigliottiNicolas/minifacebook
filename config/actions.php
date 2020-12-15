@@ -10,6 +10,7 @@ $listeDesActions = array(
 "profil" => "vues/profil.php",
 "profil" => "vues/profil.php",
 "maj" => "vues/maj.php",
+"*" => "vues/404.php",
 
     //traitement
 "login" => "traitement/login.php",

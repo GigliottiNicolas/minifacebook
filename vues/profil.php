@@ -77,8 +77,62 @@
             ?>
                 </ul>   
 
+            <h4>Ecrire un post sur mon profil</h4>
+            <!-- ecriture d'un nouveau post sur mon profil -->
+            <form method="post" action="index.php?action=addPost&idAmi=<?=$_SESSION['id'];?>">
+                <div class="form-group">
+                    <label for="titre">titre du post</label>
+                    <input type="text" class="form-control" name="titre" id="titre">
+
+                    <label for="contenu">contenu du post</label>
+                    <input type="text" class="form-control" name="contenu" id="contenu">
+
+                </div>
+                <button type="submit" name="valider" id="valider" class="btn btn-primary">Poster</button>
+            </form>
+
+
+            <h4>Mes post</h4>
+            <?php
+                $îdUser=$_SESSION['id'];
+                $reqPost=$bdd->prepare("SELECT * FROM ecrit JOIN user ON idAuteur = user.id WHERE idAmi = ? ORDER BY ecrit.dateEcrit");
+                $reqPost->execute(array($idUser));
+
+                $nbPost = $reqPost->rowCount();
+                if($nbPost>0){
+                    
+                    while($p = $reqPost->fetch()){
+                        if($p['idAuteur'] == $_SESSION['id']){
+                            ?>
+                                <div class="post">
+                                    <h5><?=$p['titre']?> - <small>poster par  moi le <?=$p['dateEcrit']?></small></h5> 
+                                    <p><?=$p['contenu']?></p>
+                                </div>
+                            <?php
+                        }
+                        else{
+                            ?>
+                                <div class="post">
+                                    <h5><?=$p['titre']?> - <small>poster par  <?=$p['pseudo']?> le <?=$p['dateEcrit']?></small></h5> 
+                                    <p><?=$p['contenu']?></p>
+                                </div>
+                            <?php
+                        }
+                    }
+                }
+                else{
+                    ?>
+                        <p>aucun post sur le mur, soyez le premier!</p>
+                    <?php
+                }
+
+                
+            ?>
+
         <?php
     }
+
+    
 
 
 
@@ -159,7 +213,7 @@
                             <h4> Mur de <?=$pseudoUser?></h4>
 
                             <?php
-                                $reqPost=$bdd->prepare("SELECT * FROM ecrit JOIN user ON idAuteur = user.id WHERE idAmi = ? ORDER BY dateEcrit DESC");
+                                $reqPost=$bdd->prepare("SELECT * FROM ecrit JOIN user ON idAuteur = user.id WHERE idAmi = ? ORDER BY dateEcrit");
                                 $reqPost->execute(array($idUser));
 
                                 $nbPost = $reqPost->rowCount();
